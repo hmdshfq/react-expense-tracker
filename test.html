@@ -1,0 +1,1217 @@
+<style>
+  .panel-group {
+    box-shadow: var(--shadow);
+  }
+  .panel-heading:hover {
+    cursor: pointer;
+  }
+  .panel-heading {
+    background: var(--prim) !important;
+    color: var(--def);
+    padding: 15px;
+    user-select: none;
+  }
+  .side-tab:hover {
+    cursor: pointer;
+  }
+  .panel.panel-default {
+    border: none;
+    box-shadow: none !important;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  .panel-heading {
+    border: none;
+    background-color: #eee;
+  }
+  .panel-body {
+    background-color: #f5f5f5;
+  }
+  .panel-title {
+    font-weight: 400;
+    color: white;
+  }
+  /*----------------------------------
+        Macbook pro mockup from:
+        http://jaredhardy.com/minimal-devices/
+    ----------------------------------*/
+  .md-macbook-pro {
+    display: block;
+    width: 55.3125em;
+    height: 31.875em;
+    font-size: 0.95vw;
+    margin: 0 auto;
+  }
+  @media (max-width: 1600px) {
+    .md-macbook-pro {
+      font-size: 12px;
+    }
+  }
+  @media (max-width: 1199px) {
+    .md-macbook-pro {
+      font-size: 11px;
+    }
+  }
+  @media (max-width: 1024px) {
+    .md-macbook-pro {
+      font-size: 10px;
+    }
+  }
+  @media (max-width: 767px) {
+    .md-macbook-pro {
+      font-size: 6px;
+    }
+  }
+  @media (max-width: 320px) {
+    .md-macbook-pro {
+      font-size: 3px;
+    }
+  }
+  .md-macbook-pro .md-lid {
+    width: 45em;
+    height: 30.625em;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 1.875em;
+    border: solid 0.1875em #cdced1;
+    background: #131313;
+  }
+  .md-macbook-pro .md-camera {
+    width: 0.375em;
+    height: 0.375em;
+    margin: 0 auto;
+    position: relative;
+    top: 1.0625em;
+    background: #000;
+    border-radius: 100%;
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .md-macbook-pro .md-camera:after {
+    content: "";
+    display: block;
+    width: 0.125em;
+    height: 0.125em;
+    position: absolute;
+    left: 0.125em;
+    top: 0.0625em;
+    background: #353542;
+    border-radius: 100%;
+  }
+  .md-macbook-pro .md-screen {
+    width: 42.25em;
+    height: 26.375em;
+    margin: 0 auto;
+    position: relative;
+    top: 2.0625em;
+    background: #fff;
+    overflow: hidden;
+  }
+  .md-macbook-pro .md-screen img {
+    width: 100%;
+  }
+  .md-macbook-pro .md-base {
+    width: 100%;
+    height: 0.9375em;
+    position: relative;
+    top: -0.75em;
+    background: #c6c7ca;
+  }
+  .md-macbook-pro .md-base:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0.5em;
+    margin: 0 auto;
+    position: relative;
+    bottom: -0.1875em;
+    background: #b9babe;
+    border-radius: 0 0 1.25em 1.25em;
+  }
+  .md-macbook-pro .md-base:before {
+    content: "";
+    display: block;
+    width: 7.6875em;
+    height: 0.625em;
+    margin: 0 auto;
+    position: relative;
+    background: #a6a8ad;
+    border-radius: 0 0 0.625em 0.625em;
+  }
+  .md-macbook-pro.md-glare .md-lid:after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 1.25em 0 0;
+    background: -webkit-linear-gradient(
+      37deg,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(247, 248, 240, 0.025) 50%,
+      rgba(250, 245, 252, 0.08)
+    );
+    background: -moz-linear-gradient(
+      37deg,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(247, 248, 240, 0.025) 50%,
+      rgba(250, 245, 252, 0.08)
+    );
+    background: -o-linear-gradient(
+      37deg,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(247, 248, 240, 0.025) 50%,
+      rgba(250, 245, 252, 0.08)
+    );
+    background: linear-gradient(
+      53deg,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(247, 248, 240, 0.025) 50%,
+      rgba(250, 245, 252, 0.08)
+    );
+  }
+  .container {
+    width: 100%;
+  }
+  .row.cards {
+    margin-bottom: 32px;
+  }
+  .row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 !important;
+  }
+  .row .col {
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    margin: 25px;
+    max-width: 450px;
+    border-radius: 10px;
+    /*border: 1px solid #232323;*/
+    box-shadow: var(--shadow);
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
+  }
+  .row .col:hover {
+    box-shadow: var(--shadow-hover);
+    transform: scale(1.1);
+  }
+  .row .col > * {
+    padding: 25px 50px;
+  }
+  .row .col > ol {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  .row .col > ol li {
+    padding: 5px 0;
+  }
+  .row .col h2 {
+    color: #f0f0f0;
+    margin: 0;
+    background-color: #232323;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+  }
+  ol li strong {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .price {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  /* div.price:first-child {
+    text-decoration: line-through;
+    text-decoration-color: var(--sec);
+  } */
+  .price:not(:first-child) > strong {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  .star {
+    color: var(--sec);
+  }
+  .date {
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+  }
+  .regular-button {
+    align-self: center;
+    margin-bottom: 25px;
+    padding: 1em 2em !important;
+  }
+</style>
+<div class="row cards">
+  <div class="col">
+    <h2>Pakiet <span style="color: #ad7d4e">Mini</span></h2>
+    <ol>
+      <li>
+        strona wykonana na podstawie wytycznych Material design ( stworzone jak
+        np. aplikacje od Google - Gmail itp),
+      </li>
+      <li>strona jest responsywna,</li>
+      <li>
+        do 4 podstron prostych (tzn. nie mogą to być: systemy rezerwacji, sklepy
+        internetowe, zautomatyzowane skrypty. Linki (wszelkiego rodzaju) czy pdf
+        czy do mediów społecznościowych nie wliczają się w tą liczbę i są
+        darmowe i nie limitowane),
+      </li>
+      <li>
+        bezpłatne wsparcie techniczne przez pierwszy miesiąc (do 2 godzin),
+      </li>
+      <li>pomoc w wyborze dostawcy hostingu/domeny,</li>
+      <li>utworzenie e-maili (do 10)</li>
+    </ol>
+    <div>
+      <div class="price"><strong>1600zł</strong></div>
+    </div>
+    <button class="regular-button"><a href="#">View Product</a></button>
+  </div>
+  <div class="col">
+    <h2>Pakiet <span style="color: #c0c0c0">Standard</span></h2>
+    <ol>
+      <li>
+        graficzny projekt strony internetowej (wykonany na podstawie wytycznych
+        klienta),
+      </li>
+      <li>
+        Wykonanie indywidualnego nowoczesnego oraz responsywnego motywu strony
+        internetowej w systemie WordPress,
+      </li>
+      <li>
+        do 4 podstron prostych (tzn. nie mogą to być: systemy rezerwacji, sklepy
+        internetowe, zautomatyzowane skrypty. Linki (wszelkieg o rodzaju) czy
+        pdf czy do mediów społecznościowych nie wliczają się w tą liczbę i są
+        darmowe i nie limitowane),
+      </li>
+      <li>
+        bezpłatne wsparcie techniczne przez pierwsze 3 miesiące (do 3 godzin),
+      </li>
+      <li>
+        pomoc w wyborze dostawcy hostingu/domeny, utworzenie e-maili (do 10),
+      </li>
+      <li>
+        zdalne szkolenie z obsługi strony internetowej (pracownika lub
+        właściciela)
+      </li>
+    </ol>
+    <div>
+      <div class="price"><strong>2400zł</strong></div>
+    </div>
+    <button class="regular-button"><a href="#">View Product</a></button>
+  </div>
+  <div class="col">
+    <h2>Pakiet <span style="color: #b1a564">Premium</span></h2>
+    <ol>
+      <li>
+        3 projekty graficzne strony internetowej do wyboru (wykonane na
+        podstawie wytycznych klienta),
+      </li>
+      <li>
+        Wykonanie indywidualnego nowoczesnego oraz responsywnego motywu strony
+        internetowej w systemie WordPress,
+      </li>
+      <li>
+        do 6 podstron prostych (tzn. nie mogą to być: systemy rezerwacji, sklepy
+        internetowe, zautomatyzowane skrypty. Linki (wszelkiego rodzaju) czy pdf
+        czy do mediów społecznościowych nie wliczają się w tą liczbę i są
+        darmowe i nie limitowane),
+      </li>
+      <li>
+        bezpłatne wsparcie techniczne przez pierwsze 5 miesięcy (do 3 godzin),
+      </li>
+      <li>
+        pomoc w wyborze dostawcy hostingu/domeny, utworzenie e-maili (do 10),
+      </li>
+      <li>
+        zdalne szkolenie z obsługi strony internetowej (pracownika lub
+        właściciela),
+      </li>
+      <li>wstępna optymalizacja wydajności (google lighthouse),</li>
+      <li>Możliwość zminimalizowania podpisu autorskiego</li>
+    </ol>
+    <div>
+      <div class="price"><strong>3200zł</strong></div>
+    </div>
+    <button class="regular-button"><a href="#">View Product</a></button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <!-- begin panel group -->
+    <div
+      class="panel-group"
+      id="accordion"
+      role="tablist"
+      aria-multiselectable="true"
+    >
+      <!-- panel 1 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab1"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingOne"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            <h4 class="panel-title">restauracjapromenada.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseOne"
+          class="panel-collapse collapse in"
+          role="tabpanel"
+          aria-labelledby="headingOne"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="https://restauracjapromenada.pl/">Sieci Restauracji Promenada</a
+            >
+            została skonstrułowana z potrzeby do zaprezentowania trzech (lub
+            więcej) punktów gastronomicznych, każdy z punktów obsługuje dwie
+            wersje językowe pomiędzy którymi można przełączać się ikoną w prawym
+            górnym rogu. Strona oparta jest na systamie zarządzania WordPress. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://restauracjapromenada.pl/"
+                >Sieci Restauracji Promenada</a
+              ><br />
+              <strong>Opublikowana:</strong> 2019<br />
+              <strong>Modyfikowana:</strong> 2020<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress<br />
+              <strong>Dodatki:</strong> Fotogalerie z Instagram, wideo w tle,
+              wielojęzyczna, wiele witryn pod jednym adresem.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 1 -->
+      <!-- panel 2 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab2"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingTwo"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+          >
+            <h4 class="panel-title collapsed">pizza-grota.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseTwo"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingTwo"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="https://pizza-grota.pl">pizzeri Grota</a
+            >
+            została stworzona z myślą o sprzedaży produktów pizzeri w czytelny i
+            atrakcyjny sposób dla klientów z terenów miasta Świnoujście, system
+            w autoamtyzuje wiele procesów zachodzących w restauracji od
+            płatności za usługi po przekazanie zamówienia za pomocą powiadomiena
+            push do obsługi. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://pizza-grota.pl"
+                >Pizzeri Grota</a
+              ><br />
+              <strong>Opublikowana:</strong> 2020<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress + WooCommerce<br />
+              <strong>Dodatki:</strong> Galeria produktów, fotogalerie, zamówić
+              jedzenie ze strony internetowej
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 2 -->
+      <!--  panel 3 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab3"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingThree"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseThree"
+            aria-expanded="false"
+            aria-controls="collapseThree"
+          >
+            <h4 class="panel-title">milli-vanilli.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseThree"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingThree"
+        >
+          <div class="panel-body">
+            <!-- tab content goes here -->
+            <!-- Głównym zadaniem strony
+            <a target="_blank" rel="noopener noreferrer" href="https://milli-vanilli.pl/">Cukierni Milli Vanilli</a
+            >
+            jest atrakcyjne prezentowanie codziennie zmieniających się
+            produktów, w odpowiedzi na taką potrzebę do strony został
+            zaaimplementowany system pobierający zdjęcia z profilu instagram na
+            którego właścicele w prosty sposób sami mogą dodawać zdjęcia. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://milli-vanilli.pl/"
+                >Cukierni Milli Vanilli</a
+              ><br />
+              <strong>Opublikowana:</strong> 2019<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress<br />
+              <strong>Dodatki:</strong> Instagram gallery
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- panel 9 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab9"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingNine"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseNine"
+            aria-expanded="false"
+            aria-controls="collapseNine"
+          >
+            <h4 class="panel-title collapsed">studiococoon.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseNine"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingNine"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="http://studiococoon.pl/">Sieci salonów i klinik kosmetycznych Cocoon</a
+            >
+            jest stroną typu multisite czyli przygotowaną pod rozbudowę na
+            większą liczbę lokali zachowując estetykę prezentowanych treści oraz
+            rozdzielenie treści prezentowanych w każdym z lokali. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="http://studiococoon.pl/"
+                >Sieci salonów i klinik kosmetycznych Cocoon</a
+              ><br />
+              <strong>Opublikowana:</strong> 2019<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript<br />
+              <strong>Oparta na:</strong> Wordpress Multisite<br />
+              <strong>Dodatki:</strong> Galeria usług, menu serwisowe, wiele
+              witryn pod jednym adresem
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 9 -->
+      <!-- panel 4 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab4"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingFour"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseFour"
+            aria-expanded="false"
+            aria-controls="collapseFour"
+          >
+            <h4 class="panel-title collapsed">palewscy.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseFour"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingFour"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="https://palewscy.pl/">Kancelari podatkowej Palewscy</a
+            >
+            jest prostą stroną opartą o WordPress prezentującą nowości ze świata
+            podatków. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://palewscy.pl/"
+                >Kancelari podatkowej Palewscy</a
+              ><br />
+              <strong>Opublikowana:</strong> 2018<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress<br />
+              <strong>Dodatki:</strong> Blog
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 4 -->
+      <!-- panel 5 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab5"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingFive"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseFive"
+            aria-expanded="false"
+            aria-controls="collapseFive"
+          >
+            <h4 class="panel-title collapsed">sim-system.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseFive"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingFive"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="http://sim-system.pl/">Firmy Sim-System</a
+            >
+            jest prostą stroną opartą o WordPress, właściciel strony poszukiwał
+            spsobu na wyróżnienie się w swojej branży, nasza firma postawiła na
+            animacje 3D które w niebanalny sposób przyciągają uwagę. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="http://sim-system.pl/"
+                >Firmy Sim-System</a
+              ><br />
+              <strong>Opublikowana:</strong> 2017<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript<br />
+              <strong>Dodatki:</strong> 3D animations
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 5 -->
+      <!-- panel 6 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab6"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingSix"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseSix"
+            aria-expanded="false"
+            aria-controls="collapseSix"
+          >
+            <h4 class="panel-title collapsed">www.dziesiatka.swi.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseSix"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingSix"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="http://www.dziesiatka.swi.pl/">Przedszkola nr 10 "Kolorowy Świat"</a
+            >
+            jest dowodem na to że nasza firma jest w stanie odnaleźć się w
+            każdej konwencji, nawet tej dziecinnej, zachowując pełny
+            profesjonalizm. W ramach tego projektu zostało również
+            przeprowadzone szkolenie dla kadry obsługującej tą stronę. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="http://www.dziesiatka.swi.pl/"
+                >Przedszkola nr 10 "Kolorowy Świat*</a
+              ><br />
+              <strong>Opublikowana:</strong> 2017<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress<br />
+              <strong>Dodatki:</strong> Efekt paralaksy, blog
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 6 -->
+      <!-- panel 7 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab7"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingSeven"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseSeven"
+            aria-expanded="false"
+            aria-controls="collapseSeven"
+          >
+            <h4 class="panel-title collapsed">zbigniewzajda.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseSeven"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingSeven"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="http://zbigniewzajda.pl/">Galeri artystycznej Zbigniewa Zajdy</a
+            >
+            jest personifikacją minimalizmu przyciągającą uwagę do treści.
+            Jednym z wyzwań przy tym zleceniu było zooptymalizwaonie strony do
+            szybkiego wyświetlania obrazów, zostały tutaj zastosowane
+            rozwiązania cache oraz konwersji obrazów WebP, które znacząco
+            poprawiły pracę strony nawet przy dużym obciążeniu. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="http://zbigniewzajda.pl/"
+                >Galeri artystycznej Zbigniewa Zajdy</a
+              ><br />
+              <strong>Opublikowana:</strong> 2019<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress<br />
+              <strong>Dodatki:</strong> Fotogaleria, obrazy prezentowane w
+              formacie nowej generacji, optymalizacja wydajności
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 7 -->
+      <!-- panel 8 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab8"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingEight"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseEight"
+            aria-expanded="false"
+            aria-controls="collapseEight"
+          >
+            <h4 class="panel-title collapsed">neptun.swinoujscie.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseEight"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingEight"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="https://neptun.swinoujscie.pl/">Restauracji Neptun</a
+            >
+            to jedno z naszych pierwszych zleceń do którego mamy WIELKI
+            sentyment, zadaniem strony WWW była prezencja restauracji oraz
+            rozwiąznie problemu zarządzania rezerwacjami. Właściciel poszukiwał
+            rozwiązania które umożliwi mu nawet przy dużym obłożeniu przyjmować
+            rezerwacje, które często są koniecznością dla odwiedzających. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://neptun.swinoujscie.pl/"
+                >Restauracji Neptun</a
+              ><br />
+              <strong>Opublikowana:</strong> 2017<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress<br />
+              <strong>Dodatki:</strong> Fotogaleria, prosty system rezerwacji,
+              newsy
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 8 -->
+      <!-- panel 10 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab10"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingTen"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseTen"
+            aria-expanded="false"
+            aria-controls="collapseTen"
+          >
+            <h4 class="panel-title collapsed">domex.swinoujscie.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseTen"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingTen"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="https://domex.swinoujscie.pl/">Domex Swinoujscie</a
+            >
+            to jedno z naszych pierwszych zleceń do którego mamy WIELKI
+            sentyment, zadaniem strony WWW była prezencja restauracji oraz
+            rozwiąznie problemu zarządzania rezerwacjami. Właściciel poszukiwał
+            rozwiązania które umożliwi mu nawet przy dużym obłożeniu przyjmować
+            rezerwacje, które często są koniecznością dla odwiedzających. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://domex.swinoujscie.pl/"
+                >Domex Swinoujscie</a
+              ><br />
+              <strong>Opublikowana:</strong> 2020<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress<br />
+              <strong>Dodatki:</strong> optymalizacja wydajności
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 10 -->
+      <!-- panel 11 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab11"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingEleven"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseEleven"
+            aria-expanded="false"
+            aria-controls="collapseEleven"
+          >
+            <h4 class="panel-title collapsed">golden-kantor.eu</h4>
+          </div>
+        </span>
+        <div
+          id="collapseEleven"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingEleven"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="http://golden-kantor.eu/">Golden Kantor</a
+            >
+            to jedno z naszych pierwszych zleceń do którego mamy WIELKI
+            sentyment, zadaniem strony WWW była prezencja restauracji oraz
+            rozwiąznie problemu zarządzania rezerwacjami. Właściciel poszukiwał
+            rozwiązania które umożliwi mu nawet przy dużym obłożeniu przyjmować
+            rezerwacje, które często są koniecznością dla odwiedzających. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="http://golden-kantor.eu/"
+                >Golden Kantor</a
+              ><br />
+              <strong>Opublikowana:</strong> 2021<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress<br />
+              <strong>Dodatki:</strong> Galeria produktów, wielojęzyczna
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 11 -->
+      <!-- panel 12 -->
+      <div class="panel panel-default">
+        <!--wrap panel heading in span to trigger image change as well as collapse -->
+        <span
+          class="side-tab"
+          data-target="#tab12"
+          data-toggle="tab"
+          role="tab"
+          aria-expanded="false"
+        >
+          <div
+            class="panel-heading"
+            role="tab"
+            id="headingTwelve"
+            data-toggle="collapse"
+            data-parent="#accordion"
+            href="#collapseTwelve"
+            aria-expanded="false"
+            aria-controls="collapseTwelve"
+          >
+            <h4 class="panel-title collapsed">vitre.pl</h4>
+          </div>
+        </span>
+        <div
+          id="collapseTwelve"
+          class="panel-collapse collapse"
+          role="tabpanel"
+          aria-labelledby="headingTwelve"
+        >
+          <div class="panel-body">
+            <!-- Tab content goes here -->
+            <!-- Strona
+            <a target="_blank" rel="noopener noreferrer" href="https://vitre.pl/">Vitre</a
+            >
+            to jedno z naszych pierwszych zleceń do którego mamy WIELKI
+            sentyment, zadaniem strony WWW była prezencja restauracji oraz
+            rozwiąznie problemu zarządzania rezerwacjami. Właściciel poszukiwał
+            rozwiązania które umożliwi mu nawet przy dużym obłożeniu przyjmować
+            rezerwacje, które często są koniecznością dla odwiedzających. -->
+            <!-- New Description -->
+            <p>
+              <strong>Tytuł: </strong>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://vitre.pl/"
+              >
+                Vitre</a
+              ><br />
+              <strong>Opublikowana:</strong> 2021<br />
+              <strong>Użyte:</strong> CSS3, HTML5, jQuery, JavaScript, PHP<br />
+              <strong>Oparta na:</strong> Wordpress + WooCommerce<br />
+              <strong>Dodatki:</strong> Galeria produktów, kalkulator ceny
+              niestandardowej, blog
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / panel 12 -->
+    </div>
+    <!-- / panel-group -->
+  </div>
+  <!-- /col-md-4 -->
+  <div class="col-md-8">
+    <!-- begin macbook pro mockup -->
+    <div class="md-macbook-pro md-glare">
+      <div class="md-lid">
+        <div class="md-camera"></div>
+        <div class="md-screen">
+          <!-- content goes here -->
+          <div class="tab-featured-image">
+            <div class="tab-content">
+              <div class="tab-pane in active" id="tab1">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://restauracjapromenada.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2020/07/Strona-sieci-restauracji-Promenada.jpg"
+                    alt="Restauracja Promenada"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane" id="tab2">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://pizza-grota.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2020/07/Strona-Pizzeri-Grota.jpg"
+                    alt="Pizzeria Grota"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab3">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://milli-vanilli.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2020/07/Cukiernia-Milli-Vanilli.png"
+                    alt="Milli Vanilli"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab4">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://palewscy.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2020/07/Palewscy-1.jpg"
+                    alt="Palewscy S. C."
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab5">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://sim-system.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2020/07/Sim-system.png"
+                    alt="Sim-System"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab6">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://www.dziesiatka.swi.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2020/07/Przedszkole-nr-10.jpg"
+                    alt="Przedszkole Dziesiątka"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab7">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://zbigniewzajda.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2020/07/Zajda.jpg"
+                    alt="Galeria sztuki zbigniew Zajda"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab8">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://neptun.swinoujscie.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2020/07/Neptun.jpg"
+                    alt="Restauracja Neptun"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab9">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://studiococoon.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2020/08/studiococoon.png"
+                    alt="Strona sieci salonów cocoon"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab10">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://domex.swinoujscie.pl/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2021/03/domex.jpg"
+                    alt="domex swinoujscie"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab11">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://golden-kantor.eu/"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2021/03/goldenkantor.jpg"
+                    alt="golden kantor"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tab12">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://vitre.pl"
+                >
+                  <img
+                    src="https://szymansky.eu/wp-content/uploads/2021/03/vitre.jpg"
+                    alt="vitre"
+                    class="img img-responsive"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="md-base"></div>
+    </div>
+    <!-- end macbook pro mockup -->
+  </div>
+  <!-- / .col-md-8 -->
+</div>
+<!-- row -->
